@@ -1,0 +1,105 @@
+{% extends 'core/base.html' %}
+
+{% block title %} <title>Create Tournament </title> {% endblock %}
+
+{% block content %}
+<div class="mt-12 px-6 py-12 bg-black rounded-2xl shadow-2xl border border-gray-50/20 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+    <h2 class="text-4xl font-playfair font-bold text-white mb-6">Create Tournament</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Iterate over form fields and apply font styles -->
+            {% for field in form %}
+            <div>
+                <label for="{{ field.id_for_label }}" class="block text-gray-300 mb-2 font-roboto">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ field.errors }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if form.non_field_errors %}
+            <div class="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 shadow-md">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <!-- Submit Button -->
+        <div class="mt-8">
+            <button
+                type="submit"
+                class="w-full py-4 rounded-xl bg-red-600 text-white font-bold hover:bg-red-700 transition duration-300 transform hover:scale-105"
+            >
+                Register
+            </button>
+        </div>
+    </form>
+</div>
+
+<style>
+    /* Font Style and Form Styling */
+    .font-playfair {
+        font-family: 'Playfair Display', serif;
+    }
+
+    .font-roboto {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    /* Form container with a dark background and hover effects */
+    .bg-black {
+        background-color: #000000;
+    }
+
+    /* Title styling with white text */
+    h2 {
+        font-size: 2.5rem;
+        color: white;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Form input styling */
+    input, select, textarea {
+        background-color: #2d2d2d;
+        color: #d1d5db;
+        border: 1px solid #4b5563;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+
+    /* Input field focus effects */
+    input:focus, select:focus, textarea:focus {
+        border-color: #f87171;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.5);
+    }
+
+    /* Error Message Styling */
+    .text-red-500 {
+        color: #f87171;
+    }
+
+    /* Button styling with background color and hover effect */
+    button {
+        background-color: #f87171;
+        color: white;
+        padding: 1rem;
+        border-radius: 1rem;
+        width: 100%;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #f43f5e;
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}

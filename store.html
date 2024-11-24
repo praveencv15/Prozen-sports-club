@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+<title>Store | Welcome</title>
+{% endblock %}
+
+{% block content %}
+<div class="px-8 py-12 bg-gradient-to-br from-black via-gray-900 to-black rounded-3xl shadow-xl border border-gray-50/10 backdrop-blur-md">
+
+    <!-- Title and New Item Button -->
+    <div class="flex items-center justify-between mb-12">
+        <h2 class="text-3xl text-center text-white font-semibold tracking-wide uppercase">
+            Store Items
+        </h2>
+        <a href="{% url 'core:det' %}" 
+           class="bg-black text-white font-semibold hover:bg-black hover:text-red-600 transition-all duration-300 transform hover:scale-105 rounded-xl p-4 shadow-lg text-lg">
+            New Item
+        </a>
+    </div>
+
+    <!-- Items Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
+        {% for item in items %}
+        <a href="#" 
+           class="block group relative overflow-hidden rounded-xl shadow-2xl bg-black transform hover:scale-105 transition duration-500">
+            <!-- Slanted Card -->
+            <div class="relative w-full h-80 bg-gradient-to-t from-red-600 to-black">
+                {% if item.photo %}
+                <img src="{{ item.photo.url }}" 
+                     alt="{{ item.item_name }}" 
+                     class="object-cover w-full h-full group-hover:opacity-80 transition duration-300">
+                {% else %}
+                <div class="flex items-center justify-center h-full text-gray-400 text-lg font-semibold">
+                    No Image Available
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Card Text Content -->
+            <div class="p-6 bg-black rounded-b-xl shadow-lg group-hover:shadow-xl transition duration-300">
+                <h3 class="text-2xl font-bold text-red-500">{{ item.item_name }}</h3>
+                <p class="text-gray-300 mt-2"><b>Price:</b> ₹{{ item.price }}</p>
+                <p class="text-gray-300"><b>Stock:</b> {{ item.stock_available }}</p>
+            </div>
+        </a>
+        {% empty %}
+        <p class="text-gray-400 text-lg font-semibold text-center col-span-full">
+            No items found in the store.
+        </p>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

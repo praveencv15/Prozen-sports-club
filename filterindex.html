@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+<title>{{ sport_name }} Tournaments</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-8 py-16 bg-gradient-to-b from-black via-gray-900 to-black text-white rounded-3xl shadow-xl">
+    <!-- Sport Name Section -->
+    <section class="text-center mb-16">
+        <h1 class="text-6xl font-extrabold leading-tight text-red-500">{{ sport_name }} Tournaments</h1>
+        <p class="text-xl mt-4 text-red-300">Participate in the most exciting tournaments of the year!</p>
+    </section>
+
+    <!-- Tournament Section -->
+    <section class="space-y-12">
+        {% for tournament in tournaments %}
+        <div class="bg-black p-8 rounded-2xl shadow-lg mb-8 hover:bg-gradient-to-br hover:from-black hover:to-red-600 transition duration-300">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-3xl font-semibold text-red-500">{{ tournament.name }}</h2>
+                    <p class="text-lg text-red-300 mt-2">{{ tournament.sport }}</p>
+                </div>
+                <a href="{% url 'core:tournament_detail' tournament.id %}" class="px-8 py-3 bg-red-600 text-white font-semibold rounded-full hover:bg-red-700 transition duration-300">View Details</a>
+            </div>
+            <p class="text-red-300">{{ tournament.description }}</p>
+        </div>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}

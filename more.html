@@ -1,0 +1,131 @@
+{% extends 'core/base.html' %}
+
+{% block title %}<title>{{ title }}</title>{% endblock %}
+
+{% block content %}
+<div class="mt-12 px-6 py-12 bg-black rounded-2xl shadow-2xl border border-gray-50/20 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+    <h2 class="text-4xl font-bold text-white mb-6">{{ title }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Name -->
+            <div>
+                <label for="name" class="block text-gray-300 mb-2">Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="w-full px-4 py-3 rounded-xl bg-gray-800 text-gray-300 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-600 transition duration-300"
+                    required
+                />
+            </div>
+            <!-- Age -->
+            <div>
+                <label for="age" class="block text-gray-300 mb-2">Age</label>
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    class="w-full px-4 py-3 rounded-xl bg-gray-800 text-gray-300 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-600 transition duration-300"
+                    required
+                />
+            </div>
+            <!-- Gender -->
+            <div>
+                <label for="gender" class="block text-gray-300 mb-2">Gender</label>
+                <select
+                    id="gender"
+                    name="gender"
+                    class="w-full px-4 py-3 rounded-xl bg-gray-800 text-gray-300 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-600 transition duration-300"
+                    required
+                >
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-gray-300 mb-2">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="w-full px-4 py-3 rounded-xl bg-gray-800 text-gray-300 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-600 transition duration-300"
+                    required
+                />
+            </div>
+            <!-- Contact -->
+            <div>
+                <label for="contact" class="block text-gray-300 mb-2">Contact</label>
+                <input
+                    type="text"
+                    id="contact"
+                    name="contact"
+                    class="w-full px-4 py-3 rounded-xl bg-gray-800 text-gray-300 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-600 transition duration-300"
+                    required
+                />
+            </div>
+        </div>
+        <!-- Submit Button -->
+        <div class="mt-8">
+            <button
+                type="submit"
+                class="w-full py-4 rounded-xl bg-red-600 text-white font-bold hover:bg-red-700 transition duration-300 transform hover:scale-105"
+            >
+                Submit Registration
+            </button>
+        </div>
+    </form>
+</div>
+
+<style>
+    /* Form container with a dark background and hover effects */
+    .bg-black {
+        background-color: #000000;
+    }
+
+    /* Title styling with white text */
+    h2 {
+        font-size: 2.5rem;
+        color: white;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Form input styling */
+    input, select {
+        background-color: #2d2d2d;
+        color: #d1d5db;
+        border: 1px solid #4b5563;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+
+    /* Input field focus effects */
+    input:focus, select:focus {
+        border-color: #f87171;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.5);
+    }
+
+    /* Button styling with background color and hover effect */
+    button {
+        background-color: #f87171;
+        color: white;
+        padding: 1rem;
+        border-radius: 1rem;
+        width: 100%;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #f43f5e;
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}
